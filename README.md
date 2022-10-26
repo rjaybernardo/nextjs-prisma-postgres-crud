@@ -8,3 +8,5 @@ $ npx prisma init
 
 Go to prisma docs - prisma.io
 $ npx prisma notes push
+
+Create a note form page
