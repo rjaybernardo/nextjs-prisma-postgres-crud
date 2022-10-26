@@ -9,4 +9,8 @@ $ npx prisma init
 Go to prisma docs - prisma.io
 $ npx prisma notes push
 
-Create a note form page
+Create a note form page - index.tsx
+Create note function - api/create.ts
+
+import { prisma } from "../lib/prisma"; -> gives access to prisma
+geServerSideProps - gives access to notes
