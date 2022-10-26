@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { GetServerSideProps } from "next";
 import { prisma } from "../lib/prisma";
+import { useRouter } from "next/router";
 
 interface Notes {
   notes: {
@@ -22,6 +23,11 @@ const Home = ({ notes }: Notes) => {
     content: "",
     id: "",
   });
+  const router = useRouter();
+
+  const refreshData = () => {
+    router.replace(router.asPath);
+  };
 
   async function create(data: FormData) {
     try {
@@ -31,7 +37,10 @@ const Home = ({ notes }: Notes) => {
           "Content-Type": "application/json",
         },
         method: "POST",
-      }).then(() => setForm({ title: "", content: "", id: "" }));
+      }).then(() => {
+        setForm({ title: "", content: "", id: "" });
+        refreshData();
+      });
     } catch (error) {
       console.log(error);
     }
